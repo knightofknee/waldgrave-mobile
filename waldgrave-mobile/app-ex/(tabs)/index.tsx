@@ -16,19 +16,24 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome to the Waldgrave!</ThemedText>
+        <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Share what you love</ThemedText>
+        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
-          Minimalistic social media. minimal in design and in desire to hack your brain.
+          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
+          Press{' '}
+          <ThemedText type="defaultSemiBold">
+            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
+          </ThemedText>{' '}
+          to open developer tools.
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Log in/Sign up so that you can keep a profile</ThemedText>
+        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
         <ThemedText>
-          You can still see profiles without logging in if your friend's profile is marked public. In that case, you can enter it below.
+          Tap the Explore tab to learn more about what's included in this starter app.
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
