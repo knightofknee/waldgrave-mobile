@@ -1,18 +1,26 @@
-import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, ScrollView,
+  Image
+ } from "react-native";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Image
+          source={{
+            uri: 'https://www.waldgrave.com/thew1.png',
+          }}
+          style={{width: 200, height: 200}}
+        />
       <Text style={styles.welcomeText}>Welcome to the Waldgrave</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Enter your email address"
+          placeholder="Enter your email address to log in or sign up"
           keyboardType="email-address"
         />
         <Button title="Submit" onPress={() => {}} />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -40,5 +48,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
     width: '100%',
+    textAlign: 'center',
   },
 });
