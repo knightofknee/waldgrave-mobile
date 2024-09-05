@@ -1,8 +1,11 @@
+import EmailInput from "@/components/EmailInput";
+import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, ScrollView,
   Image
  } from "react-native";
 
 export default function Index() {
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
@@ -12,14 +15,7 @@ export default function Index() {
           style={{width: 200, height: 200}}
         />
       <Text style={styles.welcomeText}>Welcome to the Waldgrave</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your email address to log in or sign up"
-          keyboardType="email-address"
-        />
-        <Button title="Submit" onPress={() => {}} />
-      </View>
+      <EmailInput />
     </ScrollView>
   );
 }
@@ -29,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgb(255, 195, 230)'
   },
   welcomeText: {
     fontSize: 24,
