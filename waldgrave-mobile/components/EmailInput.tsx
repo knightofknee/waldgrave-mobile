@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button, TextInput, View, StyleSheet } from "react-native";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { auth } from '../firebaseConfig.js';
 
 interface EmailInputProps {
   loginFunction: (email: string) => void; //not sure that I need to pass this in indirectly.
@@ -12,10 +14,11 @@ export default function EmailInput() {
 
   const [whichInput, setWhichInput] = useState('email');
 
-  const submitEmail = () => {
+  const submitEmail = async () => {
     // check if user exists already
 
-    if ('user exists') { //todo
+    const signinMethods = await fetchSignInMethodsForEmail(auth, email);
+    if (signinMethods.length > 0) {
       setWhichInput('password');
     }
     else {
@@ -24,20 +27,34 @@ export default function EmailInput() {
   }
 
   const submitPassword = () => {
-    // check if password is correct
-    if ('password is correct') {
-      // log user in
-      //loginFunction(email);
-    }
-    else {
-      // show error message
-    }
+      signInUser(email, password);
   }
 
-  const submitSignup = () => {
-    // create user
-    // log user in
-    //loginFunction
+  const signInUser = async (email: string, password: string) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log('User signed in:', userCredential.user);
+
+      // send user to home screen
+    } catch (error) {
+      // alert that something went wrong
+      console.error('Error signing in:', error);
+    }
+  };
+
+  const createUser = async (email: string, password: string) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      // redirect to home screen
+      console.log('User created:', userCredential.user);
+    } catch (error) {
+      // alert
+      console.error('Error creating user:', error);
+    }
+  };
+
+  const submitSignup = async () => {
+    createUser(email, password);
   }
 
   return (
@@ -45,7 +62,7 @@ export default function EmailInput() {
     {whichInput == 'email' && <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
-        placeholder="Email (for login purposes only)"
+        placeholder="Email (log in or sign up)"
         value={email}
         onChangeText={setEmail}
       />
@@ -65,7 +82,7 @@ export default function EmailInput() {
     {whichInput == 'signup' && <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
-        placeholder="Email (for login purposes only)"
+        placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />

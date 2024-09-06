@@ -8,7 +8,8 @@
       ]
     },
     "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["react", "react-native"]
+    "types": ["react", "react-native"],
+    "lib": ["dom", "es2015"]
   },
   "include": [
     "**/*.ts",
