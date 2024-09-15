@@ -1,4 +1,5 @@
 import EmailInput from "@/components/EmailInput";
+import React from "react";
 import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, ScrollView,
   Image
