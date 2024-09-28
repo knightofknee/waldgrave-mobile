@@ -8,9 +8,9 @@
         "./*"
       ]
     },
-    "typeRoots": ["./node_modules/@types", "./types"],
+    "typeRoots": ["./node_modules/@types", "./types", "./declarations.d.ts"],
     "types": ["react", "react-native"],
-    "lib": ["dom", "es2015"]
+    "lib": ["dom", "es2015", "es2019"]
   },
   "include": [
     "**/*.ts",
